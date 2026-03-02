@@ -2,6 +2,82 @@
 
 import { motion } from "framer-motion";
 import { Copy, PlusSquare } from "lucide-react";
+import { useEffect, useState } from "react";
+
+function Particles() {
+  const [particles, setParticles] = useState<Array<{ id: number; size: number; left: number; duration: number; delay: number }>>([]);
+
+  useEffect(() => {
+    // Generate particles only on the client to avoid hydration mismatch
+    const newParticles = [...Array(40)].map((_, i) => ({
+      id: i,
+      size: Math.random() * 3 + 1,
+      left: Math.random() * 100,
+      duration: Math.random() * 10 + 10,
+      delay: Math.random() * 10,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-zinc-500/50"
+          style={{ width: p.size, height: p.size, left: `${p.left}%`, top: -10 }}
+          animate={{
+            y: ["0vh", "110vh"],
+            opacity: [0, 1, 1, 0],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: "linear",
+            times: [0, 0.1, 0.9, 1],
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ScrollIndicator() {
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const newOpacity = Math.max(0, 1 - currentScrollY / 150);
+      setOpacity(newOpacity);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (opacity === 0) return null;
+
+  return (
+    <motion.div
+      className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-none z-0"
+      style={{ opacity }}
+    >
+      <span className="text-zinc-500 text-xs tracking-[0.2em] uppercase mb-2 font-medium">Scroll</span>
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        className="text-emerald-500 opacity-80"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="7 13 12 18 17 13"></polyline>
+          <polyline points="7 6 12 11 17 6"></polyline>
+        </svg>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Hero() {
   return (
@@ -13,12 +89,25 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-950/50 to-zinc-950"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12 mt-12">
+      {/* Giant Background Chevron (Game Indicator) */}
+      <div className="absolute inset-x-0 bottom-0 top-1/2 flex items-center justify-center overflow-hidden pointer-events-none z-0 opacity-[0.03]">
+        <motion.svg 
+          animate={{ y: [0, 100], opacity: [0, 1, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          viewBox="0 0 1000 300" className="w-[120vw] max-w-none text-white" fill="none"
+        >
+          <path d="M0 50 L500 250 L1000 50 L1000 100 L500 300 L0 100 Z" fill="currentColor" />
+        </motion.svg>
+      </div>
+
+      <Particles />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center justify-center mt-12 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex-1 text-center lg:text-left space-y-6"
+          className="w-full text-center space-y-6 flex flex-col items-center"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 text-sm text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50 backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
@@ -36,11 +125,11 @@ export default function Hero() {
             .
           </h1>
 
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto lg:mx-0 text-balance leading-relaxed">
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto text-balance leading-relaxed">
             An aspiring Fullstack Engineer creating high-performance, scalable, and responsive web solutions. Seeking to grow technically and contribute effectively to a development team.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <a
               href="#contact"
               className="inline-flex items-center justify-center h-12 px-8 font-medium text-zinc-950 bg-emerald-500 rounded-full hover:bg-emerald-400 transition-colors gap-2"
@@ -59,26 +148,9 @@ export default function Hero() {
             </button>
           </div>
         </motion.div>
-
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.5, delay: 0.2 }}
-           className="relative flex-1 flex justify-center lg:justify-end"
-        >
-          <div className="relative w-80 h-80 md:w-96 md:h-96">
-            {/* Background elements to mimic image space since none provided */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-zinc-800/20 rounded-3xl rotate-3 shadow-2xl backdrop-blur-md border border-zinc-800/50"></div>
-            <div className="absolute inset-0 bg-zinc-900 rounded-3xl -rotate-3 overflow-hidden border border-zinc-800 shadow-xl flex items-center justify-center">
-              <div className="text-zinc-700 font-mono text-9xl">SJ</div>
-            </div>
-            
-            {/* Decorative plus markers */}
-            <PlusSquare className="absolute -top-4 -left-4 text-emerald-500/50 w-8 h-8" />
-            <PlusSquare className="absolute -bottom-4 -right-4 text-emerald-500/50 w-8 h-8" />
-          </div>
-        </motion.div>
       </div>
+
+      <ScrollIndicator />
 
       {/* Stats Section moved to bottom of hero or next section */}
     </section>
