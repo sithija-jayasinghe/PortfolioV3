@@ -45,7 +45,7 @@ export const projects: ProjectDetails[] = [
     description: "An AI-powered CLI tool & VS Code extension that explains runtime errors directly in terminal. Captures errors across languages and uses a locally running Ollama LLM to generate fixes.",
     tech: ["Node.js", "Ollama LLM", "Regex", "VS Code Ext"],
     live: null,
-    github: "#", 
+    github: "https://github.com/sithija-jayasinghe/solution-ai-buddy-v1", 
     problemStatement: "Developers waste significant time context-switching between their IDE and web browsers to search for solutions to runtime errors, breaking their state of flow.",
     keyFeatures: [
       "Automatic capture of terminal errors",
@@ -68,7 +68,7 @@ export const projects: ProjectDetails[] = [
     description: "A multi-clinic SaaS platform streamlining registration, scheduling, prescriptions, and pharmacy. Features digital profiles and centralized medical records for quick access.",
     tech: ["Spring Boot", "React.js", "MySQL"],
     live: null,
-    github: "#",
+    github: "https://github.com/sithija-jayasinghe/Wellness-Point-Clinical-System",
     problemStatement: "Independent clinics face challenges managing patient records across different departments, losing efficiency between reception, doctors, and pharmacy.",
     keyFeatures: [
       "Multi-clinic support with independent data siloing",
@@ -90,8 +90,8 @@ export const projects: ProjectDetails[] = [
     title: "Shades By Jay - UI Library",
     description: "An open-source UI component library with 250+ reusable components using HTML, CSS, & JS. Modular, accessible, and features an interactive code playground.",
     tech: ["HTML", "CSS", "JavaScript"],
-    live: "#",
-    github: "#",
+    live: "https://shadesbyjay.site/",
+    github: "https://github.com/sithija-jayasinghe/Shades-by-Jay-UI-Library",
     problemStatement: "Developing consistent, accessible user interfaces from scratch repeatedly slows down frontend development. Existing libraries can sometimes be overly opinionated or bloated.",
     keyFeatures: [
       "250+ lightweight, reusable UI components",
@@ -111,8 +111,8 @@ export const projects: ProjectDetails[] = [
     title: "BrightMindAid",
     description: "An educational resource platform for Sri Lankan students. Provides curated learning materials, user authentication, and data management.",
     tech: ["React", "Supabase"],
-    live: "#",
-    github: "#",
+    live: "https://brightmindaid.site/",
+    github: "https://github.com/sithija-jayasinghe/BrightMindAid",
     problemStatement: "Students in Sri Lanka lack a centralized, high-quality repository for localized educational resources, making self-study difficult.",
     keyFeatures: [
       "Curated library of past papers, notes, and tutorials",
@@ -133,7 +133,7 @@ export const projects: ProjectDetails[] = [
     description: "Full-stack web app from a hackathon for real-time emergency reporting. Captures GPS offline and syncs when online, featuring a real-time admin dashboard.",
     tech: ["React", "Firebase"],
     live: null,
-    github: "#",
+    github: "https://github.com/sithija-jayasinghe/Hackathon-Web-App",
     problemStatement: "In disaster zones, internet connectivity is often severed. Emergency response teams need a way to log incidents offline that will automatically sync when connectivity is restored.",
     keyFeatures: [
       "Offline-first incident logging",
