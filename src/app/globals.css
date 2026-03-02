@@ -18,4 +18,26 @@ body {
 /* Force hide all default cursors globally */
 * {
   cursor: none !important;
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #09090b;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+  border-left: 1px solid rgba(24, 24, 27, 0.5); /* zinc-900 border */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #047857; /* deeper emerald */
+  border-radius: 10px;
+  border: 2px solid #09090b; /* creates padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #10b981; /* brighter emerald on hover */
 }
