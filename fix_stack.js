@@ -1,39 +1,8 @@
-"use client";
+const fs = require('fs');
 
-import { motion } from "framer-motion";
-import Particles from "./Particles";
-import SpotlightCard from "./SpotlightCard";
-import Magnetic from "./Magnetic";
+let code = fs.readFileSync('src/components/Stack.tsx', 'utf-8');
 
-const skills = {
-  "Programming Languages": ["Java", "JavaScript", "TypeScript"],
-  "Frameworks & Libraries": ["Spring Boot", "React", "Next.js", "Angular", "Tailwind CSS", "Bootstrap"],
-  "Databases & Backend": ["MySQL", "Supabase", "Firebase", "Node.js"],
-  "Tools & Platforms": ["Git", "GitHub", "REST APIs", "Atlassian Jira"]
-};
-
-export default function Stack() {
-  return (
-    <section id="stack" className="py-24 px-4 bg-zinc-950 border-t border-zinc-900/50 relative overflow-hidden">
-      <Particles quantity={15} />
-
-      {/* Gamer Background Glow */}
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vh] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
-           initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 }}
-           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-           viewport={{ once: false, amount: 0.2 }}
-           transition={{ duration: 0.6, ease: "easeOut" }}
-           className="mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-white uppercase text-center md:text-left">
-            My Stack<span className="text-emerald-500">.</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+const replacement = `<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {Object.entries(skills).map(([category, items], idx) => (
             <motion.div
               key={category}
@@ -63,6 +32,8 @@ export default function Stack() {
           ))}
         </div>
       </div>
-    </section>
-  );
-}
+    </section>`;
+
+code = code.replace(/<div className="grid grid-cols-1 md:grid-cols-2 gap-12">[\s\S]+?<\/div>\s+<\/div>\s+<\/section>/m, replacement);
+
+fs.writeFileSync('src/components/Stack.tsx', code);

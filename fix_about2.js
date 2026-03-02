@@ -1,4 +1,6 @@
-"use client";
+const fs = require('fs');
+
+const content = `"use client";
 
 import { motion } from "framer-motion";
 import Particles from "./Particles";
@@ -76,4 +78,5 @@ export default function About() {
       </div>
     </section>
   );
-}
+}`;
+fs.writeFileSync('src/components/About.tsx', content);

@@ -26,10 +26,10 @@ export default function Footer() {
             SJ<span className="text-emerald-500">.</span>
           </Link>
           <div className="flex gap-4">
-             <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
+             <a href="https://github.com/sithija-jayasinghe" target="_blank" rel="noreferrer" className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
                 <Github size={20} />
              </a>
-             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
+             <a href="https://www.linkedin.com/in/sithija-harshana-jayasinghe/" target="_blank" rel="noreferrer" className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
                 <Linkedin size={20} />
              </a>
              <a href="mailto:harshanajayasinghe113@gmail.com" className="p-2 bg-zinc-900 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
