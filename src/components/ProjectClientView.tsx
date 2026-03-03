@@ -8,15 +8,21 @@ import { ProjectDetails } from "@/data/projects";
 import { useEffect, useState } from "react";
 
 function Particles() {
-  const [particles] = useState(() =>
-    Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 3 + 1,
-      left: Math.random() * 100,
-      duration: Math.random() * 10 + 10,
-      delay: Math.random() * 10,
-    }))
-  );
+  const [particles, setParticles] = useState<Array<{ id: number, size: number, left: number, duration: number, delay: number }>>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        size: Math.random() * 3 + 1,
+        left: Math.random() * 100,
+        duration: Math.random() * 10 + 10,
+        delay: Math.random() * 10,
+      }))
+    );
+  }, []);
+
+  if (particles.length === 0) return null;
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
