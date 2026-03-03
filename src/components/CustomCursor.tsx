@@ -47,7 +47,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[999999]"
+      className="fixed top-0 left-0 pointer-events-none z-[999999] hidden md:block"
       style={{ originX: 0, originY: 0 }}
       animate={{
         x: mousePosition.x - 4, // Offset to align SVG tip to actual click point
